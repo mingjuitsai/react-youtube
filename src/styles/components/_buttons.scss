@@ -1,0 +1,19 @@
+button {
+	appearance: none;
+	border: 0;
+	background-color: white;
+	padding: .4em 1em;
+	border-radius: 2px;
+	line-height: 1.2;
+	outline: 0;
+	cursor: pointer;
+	transition: background-color 30ms ease-out;
+
+	&:hover {
+		background-color: lighten($theme-font-color, 10%);
+	}
+
+	&:active {
+		transform: translate(1px, 1px);
+	}
+}

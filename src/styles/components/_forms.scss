@@ -1,0 +1,16 @@
+label {
+  font-size: .8em;
+  display: block;
+}
+
+.inputRow {
+  display: flex;
+  align-items: flex-end;
+}
+
+.inputCell {
+  // flex: 1;
+  &:not(:first-child) {
+  	margin-left: 2em;
+  }
+}
