@@ -1,5 +1,6 @@
 import React from "react";
 import VideoPlayerList from './VideoPlayerList';
+import YoutubeIframeAPI from '../modules/YoutubeIframeAPI';
 
 async function fetchYoutubeSearch(q) {
 	try {
@@ -36,19 +37,16 @@ class VideoSearch extends React.Component {
 	componentDidMount() {
 		const vm = this;
 
-		let tag = document.createElement('script');
-		tag.src = "https://www.youtube.com/iframe_api";
-    let firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = function() {
-    	vm.setState({
+		YoutubeIframeAPI.tryLoadScript(() => {
+			vm.setState({
 				isYouTubeIframeAPIReady: true
 			});
-    }
+		});
 	}
 
-	onSearchInputSubmit() {
+	onSearchInputSubmit(event) {
+		event.preventDefault();
+
 		this.setState({
 				isLoading: true
 		});
@@ -56,7 +54,6 @@ class VideoSearch extends React.Component {
 		// Hanlde data
 		// Update state
 		fetchYoutubeSearch(this.state.searchInput).then(data => {
-			console.log(data);
 			this.setState({
 				videos: data
 			});
@@ -76,9 +73,9 @@ class VideoSearch extends React.Component {
 
 		return (
 			<div className="VideoSearch">
-				<form className="VideoSearch__form">
-					<input type="text" value={searchInput} onChange={onSearchInputChange} />
-					<button type="button" onClick={onSearchInputSubmit}>Search</button>
+				<form className="VideoSearch__form" onSubmit={onSearchInputSubmit}>
+					<input type="text" placeholder="Search video" value={searchInput} onChange={onSearchInputChange} />
+					<button type="submit" onClick={onSearchInputSubmit}>Search</button>
 				</form>
 				<section className={`VideoSearch__main ${loadingClass} ${APIReadyClass}`}>
 					<VideoPlayerList videos={videos}/>
