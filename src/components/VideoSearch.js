@@ -30,7 +30,6 @@ class VideoSearch extends React.Component {
 		this.onSearchInputSubmit = this.onSearchInputSubmit.bind(this);
 		this.onToggleLikeVideo = this.onToggleLikeVideo.bind(this);
 	}
-	// https://www.googleapis.com/youtube/v3/search?part=snippet&q=javascript&type=video&key=AIzaSyCB1WjqD_vSvZjvPA5CI_xaI2VLgbp3acY
 
 	onSearchInputChange(event) {
 		this.setState({
