@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "daf052a24b95a38be9a8ca3b3855fef2",
+    "revision": "9d35781aa1a3de55b23654dd33ba61c9",
     "url": "/august-youtube/index.html"
   },
   {
-    "revision": "e574cf41c586988c0ea3",
+    "revision": "7da27f9647eb157c9095",
     "url": "/august-youtube/static/css/main.07069267.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/august-youtube/static/js/2.777de623.chunk.js"
   },
   {
-    "revision": "e574cf41c586988c0ea3",
-    "url": "/august-youtube/static/js/main.cab483b7.chunk.js"
+    "revision": "7da27f9647eb157c9095",
+    "url": "/august-youtube/static/js/main.481b9d3c.chunk.js"
   },
   {
     "revision": "8a884eed37f78fa3443a",

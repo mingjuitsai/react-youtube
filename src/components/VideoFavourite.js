@@ -68,7 +68,9 @@ class VideoFavourite extends React.Component {
 		return (
 			<div className="VideoFavourite">
 				<section className={`VideoFavourite__main ${loadingClass} ${APIReadyClass}`}>
+					{videos.length ? "" : "You have no favourite videos so far."}
 					<VideoPlayerList videos={videos} likedVideos={videos} onToggleLikeVideo={onToggleLikeVideo}/>
+					
 				</section>
 			</div>
 		);
