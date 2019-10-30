@@ -21,7 +21,7 @@ function App() {
         <nav className="App-nav">
           <ul>
             <li>
-              <NavLink to="">
+              <NavLink to="/">
                 <figure className="nav-icon">
                   <SearchIcon />
                 </figure>
@@ -29,7 +29,7 @@ function App() {
               </NavLink>
             </li>
             <li>
-              <NavLink to="favourite">
+              <NavLink to="/favourite">
                 <figure className="nav-icon">
                   <LikeIcon />
                 </figure>
@@ -41,8 +41,8 @@ function App() {
       </header>
       <main className="App-main">
         <Switch>
-            <Route exact path="" component={VideoSearch}></Route>
-            <Route exact path="favourite" component={VideoFavourite} />
+            <Route exact path="/" component={VideoSearch}></Route>
+            <Route exact path="/favourite" component={VideoFavourite} />
         </Switch>
       </main>
     </div>

@@ -6,7 +6,7 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-	<BrowserRouter>
+	<BrowserRouter basename="/august-youtube/">
     <App />
   </BrowserRouter>
 , document.getElementById('root'));
