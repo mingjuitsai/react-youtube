@@ -1,8 +1,6 @@
 import React from "react";
 import LikeIcon from './LikeIcon';
 import UnLikeIcon from './UnlikeIcon';
-import LikedVideos from '../modules/LikedVideos';
-
 
 /**
  * Helpers
@@ -55,7 +53,7 @@ class VideoPlayerItem extends React.Component {
 		const vm = this;
 		const video = vm.props.video;
 		const onVideoClick = vm.onVideoClick;
-		const thumbnail = video.snippet.thumbnails.medium.url;
+		const thumbnail = video.snippet.thumbnails.high.url;
 		const isVideoLiked = vm.state.like;
 		const onToggleLikeVideo = vm.onToggleLikeVideo;
 
@@ -69,18 +67,22 @@ class VideoPlayerItem extends React.Component {
 
 		return (
 			<div className="VideoPlayerItem">
-				<div id={video.etag}>
-					<figure className="VideoPlayerItem__thumbnail">
-						<img src={thumbnail} onClick={onVideoClick}/>
-					</figure>
-				</div>
+				<article className="VideoPlayerItem__video">
+					<div className="video-ratio-wrapper">
+						<figure id={video.etag}>
+							<img src={thumbnail} onClick={onVideoClick}/>
+						</figure>
+					</div>
+				</article>
 				<header className="VideoPlayerItem__header">
-					<h3 className="VideoPlayerItem__title">
-						{video.snippet.title}
-					</h3>
-					<h5 className="VideoPlayerItem__header">
-						by {video.snippet.channelTitle}
-					</h5>
+					<div className="VideoPlayerItem__heading">
+						<h3 className="VideoPlayerItem__title">
+							{video.snippet.title}
+						</h3>
+						<h5 className="VideoPlayerItem__author">
+							by {video.snippet.channelTitle}
+						</h5>
+					</div>
 					<button className="VideoPlayerItem__like" onClick={onToggleLikeVideo}>
 						<LikeToggleIcon />
 					</button>

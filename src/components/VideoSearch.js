@@ -83,8 +83,9 @@ class VideoSearch extends React.Component {
 		const onSearchInputChange = this.onSearchInputChange;
 		const onSearchInputSubmit = this.onSearchInputSubmit;
 		const onToggleLikeVideo = this.onToggleLikeVideo;
-		let loadingClass = this.state.isLoading ? 'loading' : '';
-		let APIReadyClass = this.state.isYouTubeIframeAPIReady ? 'ready' : '';
+		const isLoading = this.state.isLoading;
+		const loadingClass = this.state.isLoading ? 'loading' : '';
+		const APIReadyClass = this.state.isYouTubeIframeAPIReady ? 'ready' : '';
 		const likedVideos = LikedVideos.videos;
 
 		return (
@@ -94,7 +95,9 @@ class VideoSearch extends React.Component {
 					<button type="submit" onClick={onSearchInputSubmit}>Search</button>
 				</form>
 				<section className={`VideoSearch__main ${loadingClass} ${APIReadyClass}`}>
+					{isLoading ? 'Searching...' : ''}
 					<VideoPlayerList videos={videos} likedVideos={likedVideos} onToggleLikeVideo={onToggleLikeVideo}/>
+					
 				</section>
 			</div>
 		);

@@ -9,5 +9,51 @@
 .App-header {
   display: flex;
   align-items: center;
-  padding: 1em 0;
+  padding: 2em 0;
+  margin-bottom: 1em;
+}
+
+.App-title {
+	margin-bottom: 0;
+
+	a {
+		color: $theme-font-color;
+		text-decoration: none;
+	}
+}
+
+.App-nav {
+	margin-right: 0;
+	margin-left: auto;
+
+	ul li {
+		display: inline-block;
+		vertical-align: middle;
+		transition: opacity 80ms ease-out;
+		
+		&:not(:first-child) {
+			margin-left: 2em;
+		}
+
+		&:hover {
+			opacity: .8;
+		}
+	}
+
+	.nav-icon,
+	.nav-text {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.nav-icon {
+		width: 1.5em;
+		height: 1.5em;
+	}
+
+	.nav-text {
+		margin-left: .6em;
+		color: $theme-font-color;
+		text-decoration: none;
+	}
 }
