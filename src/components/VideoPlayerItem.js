@@ -1,6 +1,7 @@
 import React from "react";
 import LikeIcon from './LikeIcon';
-import UnLikeIcon from './LikeIcon';
+import UnLikeIcon from './UnlikeIcon';
+import LikedVideos from '../modules/LikedVideos';
 
 
 /**
@@ -14,6 +15,17 @@ class VideoPlayerItem extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onVideoClick = this.onVideoClick.bind(this);
+		this.onToggleLikeVideo = this.onToggleLikeVideo.bind(this);
+		
+		this.state = {
+			like: false
+		}
+	}
+
+	componentDidMount() {
+		this.setState({
+			like: this.props.isVideoLiked
+		});
 	}
 
 	onVideoClick() {
@@ -32,15 +44,23 @@ class VideoPlayerItem extends React.Component {
     });
 	}
 
+	onToggleLikeVideo() {
+		this.props.onToggleLikeVideo(this.props.video);
+		this.setState({
+			like: !this.state.like
+		})
+	}
+
 	render() {
 		const vm = this;
 		const video = vm.props.video;
 		const onVideoClick = vm.onVideoClick;
 		const thumbnail = video.snippet.thumbnails.medium.url;
-		const onToggleLikeVideo = () => { this.props.onToggleLikeVideo(video) };
+		const isVideoLiked = vm.state.like;
+		const onToggleLikeVideo = vm.onToggleLikeVideo;
 
 		function LikeToggleIcon() {
-			if(vm.props.isVideoLike) {
+			if(isVideoLiked) {
 				return (<LikeIcon />);
 			} else {
 				return (<UnLikeIcon />);

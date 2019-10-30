@@ -15,7 +15,6 @@ const LikedVideos = {
 		window.localStorage.setItem(itemName, JSON.stringify(data));
 	},
 	findVideoIndex(video) {
-		console.log(this.videos);
 		return this.videos.findIndex(v => v.etag === video.etag);
 	},
 	get videos() {

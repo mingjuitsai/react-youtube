@@ -1,6 +1,8 @@
 import React from "react";
 import VideoPlayerList from './VideoPlayerList';
 import YoutubeIframeAPI from '../modules/YoutubeIframeAPI';
+import LikedVideos from '../modules/LikedVideos';
+
 
 async function fetchYoutubeSearch(q) {
 	try {
@@ -21,10 +23,12 @@ class VideoSearch extends React.Component {
 			searchInput: "",
 			isLoading: false,
 			isYouTubeIframeAPIReady: false,
-			videos: []
+			videos: [],
+			likedVideos: []
 		}
 		this.onSearchInputChange = this.onSearchInputChange.bind(this);
 		this.onSearchInputSubmit = this.onSearchInputSubmit.bind(this);
+		this.onToggleLikeVideo = this.onToggleLikeVideo.bind(this);
 	}
 	// https://www.googleapis.com/youtube/v3/search?part=snippet&q=javascript&type=video&key=AIzaSyCB1WjqD_vSvZjvPA5CI_xaI2VLgbp3acY
 
@@ -42,6 +46,17 @@ class VideoSearch extends React.Component {
 				isYouTubeIframeAPIReady: true
 			});
 		});
+	}
+
+	onToggleLikeVideo(video) {
+		// Check video etag exist in local storage array
+		// if not push into array
+		// store to local storage
+		if(LikedVideos.findVideoIndex(video) === -1) {
+			LikedVideos.addVideo(video);
+		} else {
+			LikedVideos.removeVideo(video);
+		}
 	}
 
 	onSearchInputSubmit(event) {
@@ -68,8 +83,10 @@ class VideoSearch extends React.Component {
 		const searchInput = this.state.searchInput;
 		const onSearchInputChange = this.onSearchInputChange;
 		const onSearchInputSubmit = this.onSearchInputSubmit;
+		const onToggleLikeVideo = this.onToggleLikeVideo;
 		let loadingClass = this.state.isLoading ? 'loading' : '';
 		let APIReadyClass = this.state.isYouTubeIframeAPIReady ? 'ready' : '';
+		const likedVideos = LikedVideos.videos;
 
 		return (
 			<div className="VideoSearch">
@@ -78,7 +95,7 @@ class VideoSearch extends React.Component {
 					<button type="submit" onClick={onSearchInputSubmit}>Search</button>
 				</form>
 				<section className={`VideoSearch__main ${loadingClass} ${APIReadyClass}`}>
-					<VideoPlayerList videos={videos}/>
+					<VideoPlayerList videos={videos} likedVideos={likedVideos} onToggleLikeVideo={onToggleLikeVideo}/>
 				</section>
 			</div>
 		);

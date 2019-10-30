@@ -13,9 +13,19 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      	<h1>
+      	<h1 className="App-title">
 	      	August Youtube
 	      </h1>
+        <nav className="App-nav">
+          <ul>
+            <li>
+              <NavLink to="/">Search</NavLink>
+            </li>
+            <li>
+              <NavLink to="/favourite">Favourite</NavLink>
+            </li>
+          </ul>
+        </nav>
       </header>
       <main className="App-main">
         <Switch>

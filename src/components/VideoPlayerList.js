@@ -1,6 +1,5 @@
 import React from "react";
 import VideoPlayerItem from './VideoPlayerItem';
-import LikedVideos from './../modules/LikedVideos';
 
 
 // Helpers
@@ -17,12 +16,11 @@ function areVideosDifferent(newVideos, oldVideos) {
 	return false;
 }
 
-// let likedVideos = JSON.parse(window.localStorage.getItem('august-youtube-likedVideos'));
 
+// Component
 class VideoPlayerList extends React.Component {
 	constructor(props) {
 		super(props);
-		this.onToggleLikeVideo = this.onToggleLikeVideo.bind(this);
 	}
 
 	shouldComponentUpdate(nextProps) {
@@ -30,29 +28,19 @@ class VideoPlayerList extends React.Component {
 		return areVideosDifferent(nextProps.videos, this.props.videos);
 	}
 
-	onToggleLikeVideo(video) {
-		// Check video etag exist in local storage array
-		// if not push into array
-		// store to local storage
-		if(LikedVideos.findVideoIndex(video) === -1) {
-			LikedVideos.addVideo(video);
-		} else {
-			LikedVideos.removeVideo(video);
-		}
-	}
-
 	render() {
 		const videos = this.props.videos;
 		const onLikeVideo = this.onLikeVideo;
-		const onToggleLikeVideo = this.onToggleLikeVideo;
-		function VideoPlayerItems() {
-			let items = videos.map((v, i)=> {
+		const likedVideos = this.props.likedVideos;
+		const onToggleLikeVideo = this.props.onToggleLikeVideo;
+		function VideoPlayerItems(props) {
+			let items = videos.map((video, i)=> {
 				return (
 					<VideoPlayerItem
 						key={i} 
-						video={v} 
+						video={video} 
 						onToggleLikeVideo={onToggleLikeVideo} 
-						isVideoLike={false}
+						isVideoLiked={likedVideos.some(likedVideo => likedVideo.etag === video.etag)}
 					/>
 				)
 			});
